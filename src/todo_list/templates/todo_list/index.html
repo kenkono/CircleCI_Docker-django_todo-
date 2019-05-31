@@ -1,1 +1,10 @@
-<h1>Hello World</h1>
+<a class="btn" href="{% url 'todo_list:new_todo' %}">新規作成</a>
+
+{% for todo in todos %}
+<a href="{% url 'todo_list:detail' todo.id %}" class="todo-title">
+  <div>
+    {{ todo }}
+    <span class="updated_datetime">{{ todo.updated_datetime }}</span>
+  </div>
+</a>
+{% endfor %}

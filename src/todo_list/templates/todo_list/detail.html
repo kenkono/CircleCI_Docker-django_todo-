@@ -1,0 +1,8 @@
+<div>
+  <a href="{% url 'todo_list:index' %}">戻る</a>
+</div>
+
+<h2>{{ todo.title }}</h2>
+<div>
+  {{ todo.text | linebreaks | urlize }}
+</div>
