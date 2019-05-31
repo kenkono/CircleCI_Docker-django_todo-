@@ -27,7 +27,7 @@ services:
 
   python:
       build: ./python
-      command: uwsgi --socket :8001 --module app.wsgi
+      command: uwsgi --socket :8001 --module app.wsgi --py-autoreload 1 --logto /tmp/mylog.log
       volumes:
         - ./src:/code
         - ./static:/static
