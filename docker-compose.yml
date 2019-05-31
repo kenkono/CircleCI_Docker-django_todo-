@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  nginx:
+      image: nginx:1.13
+      ports:
+        - "8000:8000"
+      volumes:
+        - ./nginx/conf:/etc/nginx/conf.d
+        - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+        - ./static:/static
+      depends_on:
+        - python
+
+  db:
+      image: mysql:5.7
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: todoList
+        MYSQL_USER: user
+        MYSQL_PASSWORD: password
+        TZ: 'Asia/Tokyo'
+      volumes:
+        - ./mysql:/var/lib/mysql
+
+  python:
+      build: ./python
+      command: uwsgi --socket :8001 --module app.wsgi
+      volumes:
+        - ./src:/code
+        - ./static:/static
+      expose:
+        - "8001"
+      depends_on:
+        - db
