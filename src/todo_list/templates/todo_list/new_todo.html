@@ -1,3 +1,17 @@
 <div>
-  <a href="{% url 'todo_list:index' %}">戻る</a>
+  <a href="{% url 'todo_list:index' %}">ホームに戻る</a>
 </div>
+
+<form action="{% url 'todo_list:new_todo' %}" method="POST">{% csrf_token %}
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <td>{{ form.title }}</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>{{ form.text }}</td>
+    </tr>
+  </table>
+  <button type="submit" class="btn">保存</button>
+</form>
