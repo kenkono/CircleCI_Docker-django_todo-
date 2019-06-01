@@ -3,3 +3,4 @@ src/app/__pycache__/*
 .idea/*
 src/todo_list/__pycache__/*
 src/todo_list/migrations/__pycache__/*
+src/__pycache__/*
