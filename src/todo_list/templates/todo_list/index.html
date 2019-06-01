@@ -1,3 +1,7 @@
+{% extends 'todo_list/base.html' %}
+
+{% block content %}
+
 <a class="btn" href="{% url 'todo_list:new_todo' %}">新規作成</a>
 
 {% for todo in todos %}
@@ -8,3 +12,5 @@
   </div>
 </a>
 {% endfor %}
+
+{% endblock %}

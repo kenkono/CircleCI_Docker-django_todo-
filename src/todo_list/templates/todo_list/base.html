@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'todo_list/css/style.css' %}">
+  <title>Todoリスト</title>
+</head>
+
+<body>
+  <h1>Todoリスト</h1>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
