@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Todo
 from django.shortcuts import get_object_or_404
+from .forms import TodoForm
+from django.views.decorators.http import require_POST
 
 
 def index(request):
@@ -14,4 +16,18 @@ def detail(request, todo_id):
 
 
 def new_todo(request):
-    return render(request, 'todo_list/new_todo.html')
+    if request.method == "POST":
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('todo_list:index')
+    else:
+        form = TodoForm
+    return render(request, 'todo_list/new_todo.html', {'form': form})
+
+
+@require_POST
+def delete_todo(request, todo_id):
+    todo = get_object_or_404(Todo, id=todo_id)
+    todo.delete()
+    return redirect('todo_list:index')

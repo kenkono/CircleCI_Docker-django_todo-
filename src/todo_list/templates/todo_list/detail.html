@@ -6,3 +6,7 @@
 <div>
   {{ todo.text | linebreaks | urlize }}
 </div>
+
+<form method="post" action="{% url 'todo_list:delete_todo' todo.pk %}">{% csrf_token %}
+  <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+</form>
