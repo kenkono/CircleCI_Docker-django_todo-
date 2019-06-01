@@ -1,3 +1,7 @@
+{% extends 'todo_list/base.html' %}
+
+{% block content %}
+
 <div>
   <a href="{% url 'todo_list:index' %}">戻る</a>
 </div>
@@ -12,3 +16,5 @@
 <form method="post" action="{% url 'todo_list:delete_todo' todo.pk %}">{% csrf_token %}
   <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
 </form>
+
+{% endblock %}
