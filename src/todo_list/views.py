@@ -31,3 +31,16 @@ def delete_todo(request, todo_id):
     todo = get_object_or_404(Todo, id=todo_id)
     todo.delete()
     return redirect('todo_list:index')
+
+
+def edit_todo(request, todo_id):
+    todo = get_object_or_404(Todo, id=todo_id)
+    if request.method == "POST":
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('todo_list:index')
+    else:
+        form = TodoForm(instance=todo)
+    return render(request, 'todo_list/edit_todo.html', {'form': form, 'todo': todo})
+

@@ -3,6 +3,15 @@
 </div>
 
 <form action="{% url 'todo_list:new_todo' %}" method="POST">{% csrf_token %}
-  {{ form.as_p }}
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <td>{{ form.title }}</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>{{ form.text }}</td>
+    </tr>
+  </table>
   <button type="submit" class="btn">保存</button>
 </form>
