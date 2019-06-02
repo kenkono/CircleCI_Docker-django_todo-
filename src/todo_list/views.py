@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 
 def index(request):
     todos = Todo.objects.all().order_by('-updated_datetime')
-    return render(request, 'todo_list/index.html', { 'todos': todos })
+    return render(request, 'todo_list/index.html', {'todos': todos})
 
 
 def detail(request, todo_id):
