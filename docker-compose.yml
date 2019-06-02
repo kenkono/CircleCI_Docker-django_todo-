@@ -25,6 +25,7 @@ services:
         TZ: 'Asia/Tokyo'
       volumes:
         - ./mysql:/var/lib/mysql
+        - ./sql:/docker-entrypoint-initdb.d
 
   python:
       build: ./python
