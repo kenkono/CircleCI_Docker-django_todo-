@@ -2,12 +2,10 @@
 
 {% block content %}
 
-<div>
-  <a href="{% url 'todo_list:detail' todo.id %}">戻る</a>
-</div>
+<a class="btn btn-primary m-1" href="{% url 'todo_list:detail' todo.id %}">戻る</a>
 
 <form action="{% url 'todo_list:edit_todo' todo.id %}" method="POST">{% csrf_token %}
-    <table>
+    <table class="table table-bordered m-1">
     <tr>
       <th>タイトル</th>
       <td>{{ form.title }}</td>
@@ -17,7 +15,7 @@
       <td>{{ form.text }}</td>
     </tr>
   </table>
-  <button class="btn" type="submit">保存</button>
+  <button class="btn btn-success" type="submit">保存</button>
 </form>
 
 {% endblock %}

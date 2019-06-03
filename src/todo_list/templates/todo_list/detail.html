@@ -2,19 +2,26 @@
 
 {% block content %}
 
-<div>
-  <a href="{% url 'todo_list:index' %}">戻る</a>
-</div>
+<h1>詳細ページ</h1>
+<table class="table table-bordered m-1">
+    <tr>
+        <th>Id</th>
+        <td>{{ todo.id }}</td>
+    </tr>
+    <tr>
+        <th>Title</th>
+        <td>{{ todo.title }}</td>
+    </tr>
+    <tr>
+        <th>Text</th>
+        <td>{{ todo.text }}</td>
+    </tr>
+</table>
 
-<h2>{{ todo.title }}</h2>
-<div>
-  {{ todo.text | linebreaks | urlize }}
-</div>
-
-<button><a class="btn" href="{% url 'todo_list:edit_todo' todo.pk %}">編集</a></button>
-
+<a class="btn btn-primary m-1" href="{% url 'todo_list:index' %}">戻る</a>
+<a class="btn btn-primary m-1" href="{% url 'todo_list:edit_todo' todo.pk %}">編集</a>
 <form method="post" action="{% url 'todo_list:delete_todo' todo.pk %}">{% csrf_token %}
-  <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+  <button class="btn btn-danger m-1" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
 </form>
 
 {% endblock %}

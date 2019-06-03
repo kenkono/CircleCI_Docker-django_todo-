@@ -2,15 +2,26 @@
 
 {% block content %}
 
-<a class="btn" href="{% url 'todo_list:new_todo' %}">新規作成</a>
+<a class="btn btn-primary m-1" href="{% url 'todo_list:new_todo' %}">新規作成</a>
 
-{% for todo in todos %}
-<a href="{% url 'todo_list:detail' todo.id %}" class="todo-title">
-  <div>
-    {{ todo }}
-    <span class="updated_datetime">{{ todo.updated_datetime }}</span>
-  </div>
-</a>
-{% endfor %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in todos %}
+    <tr>
+      <th scope="row"><a href="{% url 'todo_list:detail' todo.id %}">{{ todo.id }}</a></th>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.updated_datetime }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 
 {% endblock %}
