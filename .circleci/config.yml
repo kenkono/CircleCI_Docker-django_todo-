@@ -10,7 +10,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: sleep for waiting launch db
-          command: sleep 1
+          command: sleep 5
       - run:
           name: migrate
           command: docker-compose run python ./manage.py migrate
