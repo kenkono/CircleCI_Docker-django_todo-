@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: docker-compose build
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: "before_test: setup db"
+          command: docker-compose run python ./manage.py migrate
+      - run:
+          name: test
+          command: docker-compose run python ./manage.py test
+      - run:
+          name: docker-compose down
+          command: docker-compose down
