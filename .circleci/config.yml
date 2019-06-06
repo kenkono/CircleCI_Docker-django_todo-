@@ -1,7 +1,3 @@
-# Environment variables
-# - HOST_NAME
-# - USER_NAME
-
 version: 2
 jobs:
 #  build:
@@ -24,24 +20,14 @@ jobs:
 #      - run:
 #          name: docker-compose down
 #          command: docker-compose down
-  build:
-    machine:
-      image: circleci/classic:edge
-    steps:
-      - checkout
-      - add_ssh_keys:
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && pwd'
-#      - run: exit
-#          fingerprints:
-#            - '9c:19:4d:57:c7:16:0f:a2:8a:3e:88:50:15:09:c2:85'
+    build:
+      machine:
+        image: circleci/classic:edge
+      steps:
+        - checkout
+        - add_ssh_keys:
+        - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && git pull && docker-compose run python ./manage.py migrate'
 
-#            - run:
-#                name: Start ssh-keyscan
-#                command: ssh ${USER_NAME}@${HOST_NAME} -p 50022
-#
-#            - deploy:
-#                name: Start master deploy
-#                command: exit
 #workflows:
 #  version: 2
 #  build_and_deploy:
