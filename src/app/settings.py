@@ -29,7 +29,7 @@ SECRET_KEY = 'g%5i40))!jngwv$7!=c*lhwbqvb(0_!7pxjpv79r#1cot)w=%-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['todo-list.dynamo-tech.com', '172.31.39.3']
 
 
 # Application definition
