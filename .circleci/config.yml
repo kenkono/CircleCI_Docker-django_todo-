@@ -1,41 +1,41 @@
 version: 2
 jobs:
-#  build:
-#    machine:
-#      image: circleci/classic:edge
-#    steps:
-#      - checkout
-#      - run:
-#          name: docker-compose up
-#          command: docker-compose up -d
-#      - run:
-#          name: sleep for launch db to migrate at Django
-#          command: sleep 10
-#      - run:
-#          name: migrate
-#          command: docker-compose run python ./manage.py migrate
-#      - run:
-#          name: test
-#          command: docker-compose run python ./manage.py test
-#      - run:
-#          name: docker-compose down
-#          command: docker-compose down
-    build:
-      machine:
-        image: circleci/classic:edge
-      steps:
-        - checkout
-        - add_ssh_keys:
-        - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && sh shell/auto_deploy.sh'
+  build:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: sleep for launch db to migrate at Django
+          command: sleep 10
+      - run:
+          name: migrate
+          command: docker-compose run python ./manage.py migrate
+      - run:
+          name: test
+          command: docker-compose run python ./manage.py test
+      - run:
+          name: docker-compose down
+          command: docker-compose down
+  deploy:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - add_ssh_keys:
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && sh shell/auto_deploy.sh'
 
-#workflows:
-#  version: 2
-#  build_and_deploy:
-#    jobs:
-#      - build
-#      - deploy:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
