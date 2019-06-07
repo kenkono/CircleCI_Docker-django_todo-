@@ -26,7 +26,7 @@ jobs:
       steps:
         - checkout
         - add_ssh_keys:
-        - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && before=`cat ./python/* | md5sum` && git pull && after=`cat ./python/* | md5sum` && if [ "$before" != "$after" ]; then docker-compose down && docker-compose up -d --build;fi && docker-compose run python ./manage.py migrate'
+        - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && sh shell/auto_deploy.sh'
 
 #workflows:
 #  version: 2
