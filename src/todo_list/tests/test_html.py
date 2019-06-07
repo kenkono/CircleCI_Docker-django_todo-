@@ -5,7 +5,7 @@ class HtmlTests(SetUpDatabase):
     def test_index_page_returns_correct_html(self):
         """index.htmlが使用されるかを検証"""
         response = self.c.get('/')
-        self.assertTemplateUsed(response, 'todo_list/inde.html')
+        self.assertTemplateUsed(response, 'todo_list/index.html')
 
     def test_detail_page_returns_correct_html(self):
         """detail.htmlが使用されるかを検証"""
