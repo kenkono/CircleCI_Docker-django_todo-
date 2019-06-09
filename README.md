@@ -1,4 +1,4 @@
-# Todo list with CircleCI and Docker
+# Todo list with CircleCI and Docker(Django)
 
 ## URL
 https://todo-list.dynamo-tech.com/
