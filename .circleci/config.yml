@@ -26,7 +26,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd todoList && sh shell/auto_deploy.sh'
+      - run: ssh ${USER_NAME}@${HOST_NAME} -p ${SSH_PORT} 'cd todoList && sh shell/auto_deploy.sh'
 
 workflows:
   version: 2
